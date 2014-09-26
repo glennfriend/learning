@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'FuturaStdBook';
+    src: url('fonts/futurastd-book.eot');
+    src: url('fonts/futurastd-book.eot') format('embedded-opentype'),
+         url('fonts/futurastd-book.woff2') format('woff2'),
+         url('fonts/futurastd-book.woff') format('woff'),
+         url('fonts/futurastd-book.ttf') format('truetype'),
+         url('fonts/futurastd-book.svg#FuturaStdBook') format('svg');
+}
+@font-face {
+    font-family: 'FuturaStdLight';
+    src: url('fonts/futurastd-light.eot');
+    src: url('fonts/futurastd-light.eot') format('embedded-opentype'),
+         url('fonts/futurastd-light.woff2') format('woff2'),
+         url('fonts/futurastd-light.woff') format('woff'),
+         url('fonts/futurastd-light.ttf') format('truetype'),
+         url('fonts/futurastd-light.svg#FuturaStdLight') format('svg');
+}
+@font-face {
+    font-family: 'FuturaStdMedium';
+    src: url('fonts/futurastd-medium.eot');
+    src: url('fonts/futurastd-medium.eot') format('embedded-opentype'),
+         url('fonts/futurastd-medium.woff2') format('woff2'),
+         url('fonts/futurastd-medium.woff') format('woff'),
+         url('fonts/futurastd-medium.ttf') format('truetype'),
+         url('fonts/futurastd-medium.svg#FuturaStdMedium') format('svg');
+}
+@font-face {
+    font-family: 'HelveticaNeueBold';
+    src: url('fonts/helvetica-neue-bold.eot');
+    src: url('fonts/helvetica-neue-bold.eot') format('embedded-opentype'),
+         url('fonts/helvetica-neue-bold.woff2') format('woff2'),
+         url('fonts/helvetica-neue-bold.woff') format('woff'),
+         url('fonts/helvetica-neue-bold.ttf') format('truetype'),
+         url('fonts/helvetica-neue-bold.svg#HelveticaNeueBold') format('svg');
+}
+@font-face {
+    font-family: 'NarzissProCyRegularDrops';
+    src: url('fonts/hubertjochamtype-narzissprocyregular-drops.eot');
+    src: url('fonts/hubertjochamtype-narzissprocyregular-drops.eot') format('embedded-opentype'),
+         url('fonts/hubertjochamtype-narzissprocyregular-drops.woff2') format('woff2'),
+         url('fonts/hubertjochamtype-narzissprocyregular-drops.woff') format('woff'),
+         url('fonts/hubertjochamtype-narzissprocyregular-drops.ttf') format('truetype'),
+         url('fonts/hubertjochamtype-narzissprocyregular-drops.svg#NarzissProCyRegularDrops') format('svg');
+}
+@font-face {
+    font-family: 'VanityBold';
+    src: url('fonts/vanity-bold.eot');
+    src: url('fonts/vanity-bold.eot') format('embedded-opentype'),
+         url('fonts/vanity-bold.woff2') format('woff2'),
+         url('fonts/vanity-bold.woff') format('woff'),
+         url('fonts/vanity-bold.ttf') format('truetype'),
+         url('fonts/vanity-bold.svg#VanityBold') format('svg');
+}
