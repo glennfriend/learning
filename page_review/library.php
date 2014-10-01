@@ -46,11 +46,12 @@ function getReviews( $page=1 )
     return json_encode(array());
 }
 
-function getTpl( $fileName )
+function getTpl( $fileName, $keyword )
 {
-    $fileName = preg_replace('#[^a-zA-Z]#', '', $fileName);
-    if ( $fileName ) {
-        include 'tpl/'. $fileName .'.tpl';
+    $fileName = preg_replace('#[^a-zA-Z]#',    '', $fileName );
+    $keyword  = preg_replace('#[^a-zA-Z0-9]#', '', $keyword  );
+    if ( $fileName && $keyword ) {
+        include 'tpl/'. $fileName .'.tpl.php';
     }
 }
 

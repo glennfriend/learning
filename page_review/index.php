@@ -17,17 +17,29 @@
         };
 
         $(function() {
-            var html = '';
-            for ( var index in reviews ) {
-                html += viewHelper.getHtmlByObject('#reviewView', reviewView, reviews[index]);
-            }
-            $("#reviews_show").html( html );
-
-            var html = viewHelper.getHtmlByObject('#pagerView', pagerView, pager);
-            $("#pager_show").html( html );
-
+            initReview();
+            initPager();
         });
 
+        var initReview = function()
+        {
+            reviewView1.setObjects( reviews );
+            reviewView1.setRenderName("#reviews_show");
+            reviewView1.render();
+        };
+
+        var initPager = function()
+        {
+            var changePagerEvent = function(page)
+            {
+                console.log(page);
+            };
+
+            pagerView1.listen('pageClick',changePagerEvent);
+            pagerView1.setObject( pager );
+            pagerView1.setRenderName("#pager_show");
+            pagerView1.render();
+        };
 
     </script>
 </head>
@@ -67,11 +79,8 @@
         </div>
     </div>
 
-    <?php getTpl('reviewView'); ?>
-    <?php getTpl('pagerView'); ?>
+    <?php getTpl('review','reviewView1'); ?>
+    <?php getTpl('pager','pagerView1'); ?>
 
 </body>
 </html>
-
-
-//
