@@ -29,9 +29,9 @@
 
         var initPager = function()
         {
-            var changePagerEvent = function(page)
+            var changePagerEvent = function(data)
             {
-                console.log('page is ' + page);
+                console.log('page is ' + data.page );
             };
 
             pagerView1.listen('pageClick',changePagerEvent);

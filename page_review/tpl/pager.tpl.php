@@ -83,22 +83,22 @@
         };
 
         var templateEvent = {
-            listenEvents: {
+            events: {
                 pageClick: []
             },
             listen: function( eventName, callback )
             {
                 if ( eventName = 'pageClick' ) {
-                    var len = this.listenEvents.pageClick.length;
-                    this.listenEvents.pageClick[len] = callback;
+                    var len = this.events.pageClick.length;
+                    this.events.pageClick[len] = callback;
                 }
                 // etc event ....
             },
-            pageClick: function( page )
+            pageClick: function( data )
             {
-                for ( fun in this.listenEvents.pageClick )
+                for ( fun in this.events.pageClick )
                 {
-                    this.listenEvents.pageClick[fun]( page );
+                    this.events.pageClick[fun]( data );
                 }
             }
         };
@@ -138,8 +138,12 @@
                     else {
                         templateView.page = page;
                     }
-                    // 可以加上 isFirst, isLast
-                    templateEvent.pageClick( templateView.page );
+
+                    templateEvent.pageClick({
+                        page:        templateView.page,
+                        isFirstPage: templateView.isFirstPage(),
+                        isLastPage:  templateView.isLastPage()
+                    });
                     myself.render();
                 });
 
