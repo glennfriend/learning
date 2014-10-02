@@ -30,7 +30,7 @@
         },
         getAllPage: function()
         {
-            return this.count / this.itemPerPage;
+            return Math.round( this.count / this.itemPerPage );
         },
         renderPrev: function()
         {
