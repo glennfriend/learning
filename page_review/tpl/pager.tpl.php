@@ -28,9 +28,9 @@
         var templateView = {
             init: function( obj )
             {
-                this.itemPerPage = 3;
-                this.page   = obj.page;
-                this.count  = obj.count;
+                this.itemPerPage = obj.limit || 3;
+                this.page        = obj.page || 1;
+                this.count       = obj.count;
             },
             isFirstPage: function()
             {

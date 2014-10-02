@@ -9,7 +9,7 @@
     <script type="text/javascript" src="dist/mustache/mustache.js"></script>
     <script type="text/javascript" src="dist/main.js"></script>
     <script type="text/javascript">
-        var reviews = <?php echo getReviews(); ?>;
+        var reviews = <?php echo json_encode(getReviews()); ?>;
         var pager = {
             count: <?php echo getAllReviewCount(); ?>,
             page: 1
@@ -29,9 +29,32 @@
 
         var initPager = function()
         {
+            var reviewCallback = function(data)
+            {
+                if( Object.prototype.toString.call( data ) !== '[object Array]' ) {
+                    console.log(Object.prototype.toString.call( data ));
+                    console.log(data);
+                    console.log('callback error');
+                    return;
+                }
+
+                reviews = data;
+                initReview();
+            }
+
             var changePagerEvent = function(data)
             {
                 console.log('page is ' + data.page );
+
+                $.ajax({
+                    dataType: 'jsonp',
+                    data: {
+                        page: data.page
+                    },
+                    url: 'review_ajax.php',
+                    success: reviewCallback
+                });
+
             };
 
             pagerView1.listen('pageClick',changePagerEvent);

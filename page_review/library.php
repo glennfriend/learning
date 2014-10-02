@@ -12,6 +12,8 @@ function getAllReviews()
         array('Lady Gaga', '90', '01/05/2014', 'very good'),
         array('Lady Gaga', '50', '01/06/2014', 'very good'),
         array('Verda X',   '80', '07/09/2012', 'I_ just letting you know how pleased I am with my dress, it arrived today and I am delighted with it! The quality is amazing and it fits very well, not to mention it looks gorgeous! Thanks!'),
+        array('Verda Y',   '82', '07/09/2012', 'Thanks!'),
+        array('Verda Z',   '84', '07/09/2012', 'Very Thanks!'),
     );
 }
 
@@ -41,9 +43,9 @@ function getReviews( $page=1 )
     // echo '<pre>'; print_r($group); echo '</pre>'; exit;
 
     if ( isset($group[$page-1] ) ) {
-        return json_encode($group[$page-1]);
+        return $group[$page-1];
     }
-    return json_encode(array());
+    return array();
 }
 
 function getTpl( $fileName, $keyword )
@@ -55,7 +57,10 @@ function getTpl( $fileName, $keyword )
     }
 }
 
-
+function filterCallbackFunctionName( $name )
+{
+    return preg_replace('#[^a-zA-Z0-9\_]#', '', $name);
+}
 
 
 
