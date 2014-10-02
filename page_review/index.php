@@ -23,7 +23,7 @@
 
         var initReview = function()
         {
-            reviewView1.setObjects( reviews );
+            reviewView1.importObjects( reviews );
             reviewView1.setRenderName("#reviews_show");
             reviewView1.render();
         };
@@ -32,11 +32,11 @@
         {
             var changePagerEvent = function(page)
             {
-                console.log(page);
+                console.log('page is ' + page);
             };
 
             pagerView1.listen('pageClick',changePagerEvent);
-            pagerView1.setObject( pager );
+            pagerView1.importObject( pager );
             pagerView1.setRenderName("#pager_show");
             pagerView1.render();
         };
