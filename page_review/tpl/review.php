@@ -16,4 +16,4 @@
     <script type="text/javascript">
         var theTemplateTempKey = '<?php echo $keyword;?>';
     </script>
-    <script type="text/javascript" src="tpl/review.tpl.js"></script>
+    <script type="text/javascript" src="tpl/review.js"></script>

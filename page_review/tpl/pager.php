@@ -9,4 +9,4 @@
     <script type="text/javascript">
         var theTemplateTempKey = '<?php echo $keyword;?>';
     </script>
-    <script type="text/javascript" src="tpl/pager.tpl.js"></script>
+    <script type="text/javascript" src="tpl/pager.js"></script>
