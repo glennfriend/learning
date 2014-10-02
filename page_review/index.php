@@ -8,7 +8,6 @@
     <script type="text/javascript" src="dist/jquery/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="dist/mustache/mustache.js"></script>
     <script type="text/javascript" src="dist/main.js"></script>
-    <script type="text/javascript" src="dist/viewHelper.js"></script>
     <script type="text/javascript">
         var reviews = <?php echo getReviews(); ?>;
         var pager = {
