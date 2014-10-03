@@ -55,6 +55,11 @@
         var $img = $("#"+imageId);
         var top  = $this.offset().top  + $this.height()/2 - $img.height()/2;
         var left = $this.offset().left + $this.width()/2  - $img.width()/2;
+
+        if ( options.position == 'left') {
+            var left = $this.offset().left;
+        }
+
         $img.css("position", "absolute" );
         $img.css("top", top );
         $img.css("left", left );
@@ -79,5 +84,5 @@
         $(this).removeClass("jqueryCoverOverlay");
     }
 
-}($));
+}(jQuery));
 
