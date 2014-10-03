@@ -14,6 +14,8 @@
 
     $reviews = getReviews($page);
 
+    sleep(1);
+
     // output
     echo $callbackFunctionName . '(';
     echo json_encode($reviews);

@@ -5,7 +5,9 @@
     <meta http-equiv="Content-Language" content="zh-tw" />
     <link rel="stylesheet" type="text/css" href="dist/bootstrap-3.2.0-dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="dist/main.css" />
+    <link rel="stylesheet" type="text/css" href="dist/jquery/jquery.cover/jquery.cover.css" />
     <script type="text/javascript" src="dist/jquery/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="dist/jquery/jquery.cover/jquery.cover.js"></script>
     <script type="text/javascript" src="dist/mustache/mustache.js"></script>
     <script type="text/javascript" src="dist/main.js"></script>
     <script type="text/javascript">
@@ -18,6 +20,7 @@
         $(function() {
             initReview();
             initPager();
+            writeReivewEffect();
         });
 
         var initReview = function()
@@ -32,20 +35,26 @@
             var reviewCallback = function(data)
             {
                 if( Object.prototype.toString.call( data ) !== '[object Array]' ) {
-                    console.log(Object.prototype.toString.call( data ));
-                    console.log(data);
                     console.log('callback error');
                     return;
                 }
-
                 reviews = data;
                 initReview();
+
+                $("#reviews_show").removeCover();
+                $("#pager_show").removeCover();
             }
+
 
             var changePagerEvent = function(data)
             {
                 console.log('page is ' + data.page );
 
+                // effect
+                $("#reviews_show").addCover();
+                $("#pager_show").addCover({type:"line"});
+
+                //
                 $.ajax({
                     dataType: 'jsonp',
                     data: {
@@ -54,7 +63,6 @@
                     url: 'review_ajax.php',
                     success: reviewCallback
                 });
-
             };
 
             pagerView1.listen('pageClick',changePagerEvent);
@@ -63,10 +71,19 @@
             pagerView1.render();
         };
 
+        var writeReivewEffect = function()
+        {
+            $("#writeReviewButton").on("click", function(){
+                $(this).hide("slow");
+                $("#writeReview").show("slow");
+            });
+        };
+
     </script>
 </head>
 <body>
 
+    <!--
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -74,6 +91,7 @@
             </div>
         </div>
     </div>
+    -->
 
     <div class="container">
         <div class="row">
@@ -88,6 +106,29 @@
         </div>
         <div class="row">
             <div class="col-md-6">
+                <div class="row">
+
+                    <div id="writeReviewButton"><a href="javascript:;">WRITE A REVIEW</a></div>
+                    <div class="thumbnail" id="writeReview" style="display:none;">
+                        <div class="caption">
+                            <h4>WRITE A REVIEW</h4>
+                            <form role="form">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Full Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Review</label>
+                                        <textarea type="text" name="review" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row" id="reviews_show"></div>
                 <div class="row" id="pager_show"></div>
             </div>
