@@ -38,7 +38,7 @@
                 if ( this.isFirstPage() ) {
                     return '<li class="disabled"><a>&laquo;</a></li>';
                 }
-                return '<li><a class="' + keyword + '_pagerViewPage" data-page="prev">&laquo;</a></li>';
+                return '<li><a href="javascript:;" class="' + keyword + '_pagerViewPage" data-page="prev">&laquo;</a></li>';
             }
         },
         renderNext: function()
