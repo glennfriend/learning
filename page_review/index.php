@@ -45,10 +45,10 @@
                 $("#pager_show").removeCover();
             }
 
-
             var changePagerEvent = function(data)
             {
-                console.log('page is ' + data.page );
+                //
+                // console.log('page is ' + data.page );
 
                 // effect
                 $("#reviews_show").addCover();

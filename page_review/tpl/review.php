@@ -1,3 +1,4 @@
+<?php if (!isset($keyword)) {exit;} ?>
 
     <script type="text/html" id="<?php echo $keyword;?>Template">
         <div class="thumbnail">
