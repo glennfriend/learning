@@ -15,7 +15,7 @@
     var templateView = {
         init: function( obj )
         {
-            this.itemPerPage = obj.limit || 3;
+            this.itemPerPage = obj.limit || 5;
             this.page        = obj.page || 1;
             this.count       = obj.count;
         },
@@ -30,7 +30,7 @@
         },
         getAllPage: function()
         {
-            return Math.round( this.count / this.itemPerPage );
+            return Math.ceil( this.count / this.itemPerPage );
         },
         renderPrev: function()
         {

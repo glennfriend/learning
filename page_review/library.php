@@ -24,7 +24,7 @@ function getAllReviewCount()
 
 function getReviews( $page=1 )
 {
-    $itemPerPage = 3;
+    $itemPerPage = 5;
     $data = getAllReviews();
 
     $items = array();
