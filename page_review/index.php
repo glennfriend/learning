@@ -73,9 +73,8 @@
 
         var writeReivewEffect = function()
         {
-            $("#writeReviewButton").on("click", function(){
-                $(this).hide("slow");
-                $("#writeReview").show("slow");
+            $("#writeReviewButton").on('click',function(){
+                $("#writeReview").toggle("slow");
             });
         };
 
@@ -107,25 +106,34 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-
-                    <div id="writeReviewButton"><a href="javascript:;">WRITE A REVIEW</a></div>
-                    <div class="thumbnail" id="writeReview" style="display:none;">
-                        <div class="caption">
-                            <h4>WRITE A REVIEW</h4>
-                            <form role="form">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Full Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Review</label>
-                                        <textarea type="text" name="review" class="form-control" rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </fieldset>
-                            </form>
-                        </div>
+                    <div>
+                        <h4 style="float:left;">
+                            Avg Rating 
+                            <span class="rating-box" style="display:inline-block;">
+                                <span class="rating" style="width:90%;"></span>
+                            </span>
+                        </h4>
+                        <h4 style="float:right;"><a id="writeReviewButton" href="javascript:;">Write a review</a></h4>
+                    </div>
+                    <br style="clear:both;"/>
+                    <div id="writeReview" style="display:none;">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <form role="form">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" name="name" class="form-control" placeholder="Full Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Review</label>
+                                            <textarea type="text" name="review" class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                    </div>
                     </div>
                 </div>
 
