@@ -3,14 +3,14 @@
 
     變數
         keyword             - 幫助產生不同變數的值
-        templateView        - mustache.js 在產生樣版所使用的物件
+        templateView        - jsrender.js 在產生樣版所使用的物件
         templateCollections - 該 template 是列出多筆資料
                               為了不讓資料放置在 model 中 (避免資料污染 & 資料應該屬於 view )
                               所以由 collections 做 暫存 的地方
         templateModel       - 給予外界使用的接口
 
-    相依:
-        none
+    相依
+        jQuery
 */
 (function(keyword){
 

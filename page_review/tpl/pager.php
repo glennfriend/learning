@@ -7,7 +7,6 @@
             {{else}}
                 <li><a href="javascript:;" class="{{>keyword}}_pagerViewPage" data-page="prev">&laquo;</a></li>
             {{/if}}
-
             {{range start=1 end=getAllPage() ~key=keyword}}
                 {{if #parent.parent.data.page == #data}}
                     <li class="active"><a href="javascript:;">{{:#data}}</a></li>
@@ -17,13 +16,11 @@
                     </a></li>
                 {{/if}}
             {{/range}}
-
             {{if isLastPage()}}
                 <li class="disabled"><a>&raquo;</a></li>
             {{else}}
                 <li><a href="javascript:;" class="{{>keyword}}_pagerViewPage" data-page="next">&raquo;</a></li>
             {{/if}}
-
         </ul>
     </script>
     <script type="text/javascript">

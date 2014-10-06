@@ -1,7 +1,7 @@
 Page Review
 =========
 
-\#mustache.js
+\#jsrender.js
 \#jQuery
 \#javascript
 \#demo

@@ -3,12 +3,12 @@
 
     變數
         keyword         - 幫助產生不同變數的值
-        templateView    - mustache.js 在產生樣版所使用的物件
+        templateView    - jsrender.js 在產生樣版所使用的物件
         templateEvent   - 讓 developer 註冊的 events
         templateModel   - 給予外界使用的接口
 
-    相依:
-        none
+    相依
+        jQuery
 */
 (function(keyword){
 

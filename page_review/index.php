@@ -22,6 +22,7 @@
             initReview();
             initPager();
             writeReivewEffect();
+            listenReviewWriteSubmit();
         });
 
         var initReview = function()
@@ -74,8 +75,36 @@
 
         var writeReivewEffect = function()
         {
-            $("#writeReviewButton").on('click',function(){
+            $("#writeReviewButton").on('click', function(){
                 $("#writeReview").toggle("slow");
+            });
+        };
+
+        var listenReviewWriteSubmit = function()
+        {
+            $("#reviewWriteSubmit").on('submit', function() {
+
+                // 這裡只有假設送出, 並假設回傳ajax資料
+
+                $("#reviewWriteSubmit").addCover();
+                $("#reviews_show").addCover({type:"none"});
+                $("#pager_show").addCover({type:"none"});
+                $("#writeReviewButton").addCover({type:"none"});
+
+                setTimeout(
+                    function(){
+                        $("#reviewWriteSubmit").removeCover();
+                        $("#reviews_show").removeCover();
+                        $("#pager_show").removeCover();
+                        $("#writeReviewButton").removeCover();
+                        // form reset
+                        $("#reviewWriteSubmit")[0].reset();
+                        // close write review form
+                        $("#writeReviewButton").click();
+                    }
+                    , 2000
+                );
+                return false;
             });
         };
 
@@ -83,7 +112,6 @@
 </head>
 <body>
 
-    <!--
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -91,7 +119,6 @@
             </div>
         </div>
     </div>
-    -->
 
     <div class="container">
         <div class="row">
@@ -120,7 +147,7 @@
                     <div id="writeReview" style="display:none;">
                         <div class="thumbnail">
                             <div class="caption">
-                                <form role="form">
+                                <form role="form" id="reviewWriteSubmit">
                                     <fieldset>
                                         <div class="form-group">
                                             <label>Name</label>
