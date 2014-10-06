@@ -3,6 +3,7 @@
  *  
  *  create overlay
  *      $('#div_name').addCover()
+ *      $('#div_name').addCover({type:'default'});
  *      $('#div_name').addCover({type:'line',position:'left'});
  *
  *  remove overlay
@@ -33,23 +34,25 @@
             return;
         }
 
+        // setting
         var defaults = {
             type: 'default',
             position: 'center'
         };
         var options = jQuery.extend(defaults, options);
 
-
+        // effect
         var className = 'jqueryCover-default';
         switch(options.type)
         {
+            case 'none':
             case 'line':
                 className = 'jqueryCover-'+options.type;
             break;
         }
-
         $this.addClass("jqueryCoverOverlay");
 
+        // show image
         $("body").append('<img id="'+ imageId +'" class="'+ className +'"/>');
 
         var $img = $("#"+imageId);

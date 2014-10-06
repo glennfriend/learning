@@ -1,14 +1,13 @@
-
 .jqueryCoverOverlay {
     opacity: 0.5;
     pointer-events: none;
 }
-
+.jqueryCover-none {
+    // nothing
+}
 .jqueryCover-default {
     content:url(default.gif);
 }
-
 .jqueryCover-line {
     content:url(line.gif);
 }
-
