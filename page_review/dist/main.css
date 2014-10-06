@@ -1,0 +1,8 @@
+body {
+    //padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+/* Rating */
+.rating-box { width:80px; height:13px; font-size:0; line-height:0; background:url(rating/bkg_rating.png) 0 100% repeat-x; overflow:hidden; }
+.rating-box .rating { float:left; height:14px; margin: -2px 0 0; background:url(rating/bkg_rating.png) 0 0 repeat-x; }
