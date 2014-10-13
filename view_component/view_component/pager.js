@@ -16,8 +16,9 @@
         init: function( obj )
         {
             this.itemPerPage = obj.limit || 5;
-            this.page        = obj.page || 1;
+            this.page        = obj.page  || 1;
             this.count       = obj.count;
+            this.pageScope   = 3;
             this.keyword     = keyword;
         },
         isFirstPage: function()
@@ -32,6 +33,24 @@
         getAllPage: function()
         {
             return Math.ceil( this.count / this.itemPerPage );
+        },
+        // 計算顯示的 page number 從多少開始
+        getPageStart: function()
+        {
+            var start = this.page - this.pageScope;
+            if ( start<=0 ) {
+                start = 1;
+            }
+            return start;
+        },
+        // 計算顯示的 page number 到多少結束
+        getPageEnd: function()
+        {
+            var end = this.page + this.pageScope;
+            if ( end>this.getAllPage() ) {
+                end = this.getAllPage();
+            }
+            return end;
         }
     };
 
@@ -87,7 +106,7 @@
                     templateView.page--;
                 }
                 else {
-                    templateView.page = page;
+                    templateView.page = Number(page);
                 }
 
                 templateEvent.pageClick({

@@ -10,17 +10,23 @@
     <script type="text/javascript" src="dist/jquery/jsrender/range.js"></script>
     <script type="text/javascript" src="dist/main.js"></script>
     <?php getViewComponent('pager','pager1'); ?>
+    <?php getViewComponent('pager','pager2'); ?>
     <script type="text/javascript">
-        var pager = {
-            count: 100,
-            page: 3
+        var data1 = {
+            count: 101,
+            page: 1
+        };
+        var data2 = {
+            count: 30,
+            page: 2
         };
 
         $(function() {
-            initPager();
+            initPager1();
+            initPager2();
         });
 
-        var initPager = function()
+        var initPager1 = function()
         {
             var changePagerEvent = function(data)
             {
@@ -28,9 +34,22 @@
             };
 
             pager1.register('pageClick', changePagerEvent);
-            pager1.import( pager );
-            pager1.setRenderName("#pager_show");
+            pager1.import( data1 );
+            pager1.setRenderName("#pager1_show");
             pager1.render();
+        };
+
+        var initPager2 = function()
+        {
+            var changePagerEvent2 = function(data)
+            {
+                console.log(data);
+            };
+
+            pager2.register('pageClick', changePagerEvent2);
+            pager2.import( data2 );
+            pager2.setRenderName("#pager2_show");
+            pager2.render();
         };
 
     </script>
@@ -51,8 +70,8 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="row" id="reviews_show"></div>
-                <div class="row" id="pager_show"></div>
+                <div class="row" id="pager1_show"></div>
+                <div class="row" id="pager2_show"></div>
             </div>
             <div class="col-md-6">
                 <p>Based in Los Angeles, California, SimplyBridal is about making your wedding process easy and accessible. When our founder Lawrence Ng began researching the bridal space he was surprised by how expensive it was. Many of its aspects seemed overpriced. After watching an episode of Say Yes to the Dress, he realized how important the dress was to the bride and how the bride had to stretch beyond her budget to buy the dress she wanted. This was not right.</p>
