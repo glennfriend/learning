@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="dist/jquery/jquery.fullPage/jquery.fullPage.css" />
     <style type="text/css">
         .section {
+            padding-bottom: 200px;
             background-size: cover;
         }
 
@@ -21,11 +22,12 @@
         }
         #section3 {
             background-image: url(media/bg3.jpg);
-            color: #000000;
+            color: #ffff00;
         }
     </style>
     <script type="text/javascript" src="dist/jquery/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="dist/jquery/jquery.fullPage/jquery.fullPage.js"></script>
+    <script type="text/javascript" src="dist/jquery/jquery.fullPage/jquery.slimscroll.js"></script>
     <script type="text/javascript" src="dist/main.js"></script>
     <script type="text/javascript">
 
@@ -37,6 +39,8 @@
                 navigation: true,
                 navigationPosition: 'right',
                 navigationTooltips: ['Homepage', 'Two Page'],
+                scrollOverflow: true,
+                scrollingSpeed: 1,
                 css3: true
             });
         });
@@ -53,7 +57,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top header">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">Demo</a>
+                <a class="navbar-brand">Demo FullPage</a>
                 <a href="#page1" class="navbar-brand">Top</a>
             </div>
         </div>
@@ -86,12 +90,47 @@
 
             <div class="section" id="section3">
                 <div class="container">
-                    <div class="row">
-                        <p>Based in Los Angeles, California, SimplyBridal is about making your wedding process easy and accessible. When our founder Lawrence Ng began researching the bridal space he was surprised by how expensive it was. Many of its aspects seemed overpriced. After watching an episode of Say Yes to the Dress, he realized how important the dress was to the bride and how the bride had to stretch beyond her budget to buy the dress she wanted. This was not right.</p>
-                        <p>Lawrence decided to start his own bridal company because he felt that women should be able to have not only the dress but also the wedding of their dreams at an accessible price.</p>
-                        <p>His previous business experience includes Oversee, a company that he co-founded at 21. It ranked the third fastest growing private business in Los Angeles by the Los Angeles Business Journal in 2007. He was also named a winner of the Ernst & Young Entrepreneur of the Year award for the Greater Los Angeles program in the technology category the same year.</p>
-                        <p>SimplyBridal started off with the simple idea of creating beautiful weddings at reasonable prices. Beginning with wedding dresses, we’ve since added more products and strive to provide outstanding quality without the inconvenience and costs of traditional bridal boutiques and retailers. Our products are always things that we would want our family members and friends to buy, wear, and love.</p>
-                        <p>That means that we only partner with quality designers that share these values such as Los Angeles-based jewelry designer May Yeung. Our design team includes graduates from the Fashion Institute of Technology in New York and Fashion Institute of Design & Merchandising in Los Angeles. They have designed for BCBGMAXAZRIA and Suzi Chin for Maggy. They source only the finest fabrics and embellishments for SimplyBridal, and sets the same high quality standards that are demanded by the New York fashion scene.</p>
+                    <div class="row intro">
+                        <p>~~~~ 1 ~~~~</p>
+                        <p>2</p>
+                        <p>3</p>
+                        <p>4</p>
+                        <p>5</p>
+                        <p>6</p>
+                        <p>7</p>
+                        <p>8</p>
+                        <p>9</p>
+                        <p>10</p>
+                        <p>11</p>
+                        <p>12</p>
+                        <p>13</p>
+                        <p>14</p>
+                        <p>15</p>
+                        <p>16</p>
+                        <p>17</p>
+                        <p>18</p>
+                        <p>19</p>
+                        <p>20</p>
+                        <p>21</p>
+                        <p>22</p>
+                        <p>23</p>
+                        <p>24</p>
+                        <p>25</p>
+                        <p>26</p>
+                        <p>27</p>
+                        <p>28</p>
+                        <p>29</p>
+                        <p>30</p>
+                        <p>31</p>
+                        <p>32</p>
+                        <p>33</p>
+                        <p>34</p>
+                        <p>35</p>
+                        <p>36</p>
+                        <p>37</p>
+                        <p>38</p>
+                        <p>39</p>
+                        <p>~~~~ 40 ~~~~ </p>
                     </div>
                 </div>
             </div>
