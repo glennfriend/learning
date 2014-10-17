@@ -12,14 +12,6 @@
     <?php getViewComponent('pager','pager1'); ?>
     <?php getViewComponent('pager','pager2'); ?>
     <script type="text/javascript">
-        var data1 = {
-            count: 101,
-            page: 1
-        };
-        var data2 = {
-            count: 30,
-            page: 2
-        };
 
         $(function() {
             initPager1();
@@ -28,26 +20,30 @@
 
         var initPager1 = function()
         {
-            var changePagerEvent = function(data)
-            {
+            pager1.on('pageClick', function(data) {
                 console.log(data);
-            };
+            });
 
-            pager1.register('pageClick', changePagerEvent);
-            pager1.import( data1 );
+            var data = {
+                count: 101,
+                page: 1
+            };
+            pager1.import( data );
             pager1.setRenderName("#pager1_show");
             pager1.render();
         };
 
         var initPager2 = function()
         {
-            var changePagerEvent2 = function(data)
-            {
+            pager2.on('pageClick', function(data) {
                 console.log(data);
-            };
+            });
 
-            pager2.register('pageClick', changePagerEvent2);
-            pager2.import( data2 );
+            var data = {
+                count: 30,
+                page: 2
+            };
+            pager2.import( data );
             pager2.setRenderName("#pager2_show");
             pager2.render();
         };

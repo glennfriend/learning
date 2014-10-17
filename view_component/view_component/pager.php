@@ -1,6 +1,6 @@
 <?php if (!isset($keyword)) {exit;} ?>
 
-    <script type="text/html" id="vcTemplate<?php echo $keyword;?>">
+    <script type="text/html" id="vcTemplate<?php echo ucfirst($keyword);?>">
         <ul class="pagination">
             {{if isFirstPage()}}
                 <li class="disabled"><a>&laquo;</a></li>
@@ -24,6 +24,9 @@
         </ul>
     </script>
     <script type="text/javascript">
-        var theTemplateTempKey = '<?php echo $keyword;?>';
+        var theAutoSetting = {
+            keyword: '<?php echo $keyword;?>',
+            templateId: 'vcTemplate<?php echo ucfirst($keyword);?>'
+        };
     </script>
     <script type="text/javascript" src="view_component/pager.js"></script>

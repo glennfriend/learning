@@ -10,7 +10,7 @@
     相依
         jQuery
 */
-(function(keyword){
+(function(setting){
 
     var templateView = {
         init: function( obj )
@@ -19,7 +19,8 @@
             this.page        = obj.page  || 1;
             this.count       = obj.count;
             this.pageScope   = 3;
-            this.keyword     = keyword;
+            this.keyword     = setting.keyword;
+            this.templateId  = setting.templateId;
         },
         isFirstPage: function()
         {
@@ -58,7 +59,7 @@
         events: {
             pageClick: []
         },
-        register: function( eventName, callback )
+        add: function( eventName, callback )
         {
             if ( eventName = 'pageClick' ) {
                 var len = this.events.pageClick.length;
@@ -75,14 +76,16 @@
     };
 
     var templateModel = {
+        view: {},
         renderName: '',
         import: function(pager)
         {
-            templateView.init(pager);
+            this.view = templateView;
+            this.view.init(pager);
         },
-        register: function( eventName, callback )
+        on: function( eventName, callback )
         {
-            templateEvent.register( eventName, callback );
+            templateEvent.add( eventName, callback );
         },
         setRenderName: function( renderName )
         {
@@ -90,29 +93,28 @@
         },
         render: function()
         {
-            var templateId = '#vcTemplate' + keyword;
-            var html = $(templateId).render( templateView );
+            var html = $('#'+setting.templateId).render( this.view );
             $(this.renderName).html( html );
 
             // click page event
             var myself = this;
-            var className = "." + keyword + "_pagerViewPage";
+            var className = "." + setting.keyword + "_pagerViewPage";
             $(className).on("click", function(){
                 var page = $(this).attr("data-page");
                 if ( page == 'next' ) {
-                    templateView.page++;
+                    myself.view.page++;
                 }
                 else if ( page == 'prev' ) {
-                    templateView.page--;
+                    myself.view.page--;
                 }
                 else {
-                    templateView.page = Number(page);
+                    myself.view.page = Number(page);
                 }
 
                 templateEvent.pageClick({
-                    page:        templateView.page,
-                    isFirstPage: templateView.isFirstPage(),
-                    isLastPage:  templateView.isLastPage()
+                    page:        myself.view.page,
+                    isFirstPage: myself.view.isFirstPage(),
+                    isLastPage:  myself.view.isLastPage()
                 });
                 myself.render();
             });
@@ -120,6 +122,6 @@
         }
     };
 
-    this[keyword] = templateModel;
+    this[setting.keyword] = templateModel;
 
-})(theTemplateTempKey);
+})(theAutoSetting);
