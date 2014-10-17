@@ -101,6 +101,7 @@
             var className = "." + setting.keyword + "_pagerViewPage";
             $(className).on("click", function(){
                 var page = $(this).attr("data-page");
+                var currentPage = myself.view.page;
                 if ( page == 'next' ) {
                     myself.view.page++;
                 }
@@ -110,9 +111,9 @@
                 else {
                     myself.view.page = Number(page);
                 }
-
                 templateEvent.pageClick({
                     page:        myself.view.page,
+                    originPage:  currentPage,
                     isFirstPage: myself.view.isFirstPage(),
                     isLastPage:  myself.view.isLastPage()
                 });
