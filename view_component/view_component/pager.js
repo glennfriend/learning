@@ -17,7 +17,7 @@
         {
             this.itemPerPage = obj.limit || 5;
             this.page        = obj.page  || 1;
-            this.count       = obj.count;
+            this.count       = obj.count || 0;
             this.pageScope   = 3;
             this.keyword     = setting.keyword;
             this.templateId  = setting.templateId;
@@ -57,20 +57,31 @@
 
     var templateEvent = {
         events: {
-            pageClick: []
+            pageClick: [],
+            error: []
         },
         add: function( eventName, callback )
         {
-            if ( eventName = 'pageClick' ) {
+            if ( eventName == 'pageClick' ) {
                 var len = this.events.pageClick.length;
                 this.events.pageClick[len] = callback;
             }
-            // etc event ....
+            else if ( eventName == 'error' ) {
+                var len = this.events.error.length;
+                this.events.error[len] = callback;
+            }
         },
+        // all events
         pageClick: function( data )
         {
             for ( index in this.events.pageClick ) {
                 this.events.pageClick[index]( data );
+            }
+        },
+        error: function()
+        {
+            for ( index in this.events.error ) {
+                this.events.error[index]();
             }
         }
     };
@@ -93,6 +104,11 @@
         },
         render: function()
         {
+            if ( this.view.count <= 0 ) {
+                templateEvent.error();
+                return;
+            }
+
             var html = $('#'+setting.templateId).render( this.view );
             $(this.renderName).html( html );
 

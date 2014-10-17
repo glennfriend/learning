@@ -9,11 +9,3 @@ function getViewComponent( $fileName, $keyword )
     }
 }
 
-function filterCallbackFunctionName( $name )
-{
-    return preg_replace('#[^a-zA-Z0-9\_]#', '', $name);
-}
-
-
-
-
