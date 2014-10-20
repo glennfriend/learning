@@ -2,11 +2,48 @@
 <html>
 <head>
     <?php include_once 'head.php'; ?>
+    <?php getViewComponent('pager','pager1'); ?>
+    <?php getViewComponent('pager','pager2'); ?>
     <script type="text/javascript">
 
         $(function() {
-            //
+            initPager1();
+            initPager2();
         });
+
+        var initPager1 = function()
+        {
+            pager1.on('error', function(data) {
+                console.log('page1 error');
+            });
+
+            pager1.on('pageClick', function(data) {
+                console.log(data);
+            });
+
+            var data = {
+                count: 101,
+                page: 1
+            };
+            pager1.import( data );
+            pager1.setRenderName("#pager1_show");
+            pager1.render();
+        };
+
+        var initPager2 = function()
+        {
+            pager2.on('pageClick', function(data) {
+                console.log(data);
+            });
+
+            var data = {
+                count: 30,
+                page: 2
+            };
+            pager2.import( data );
+            pager2.setRenderName("#pager2_show");
+            pager2.render();
+        };
 
     </script>
 </head>
@@ -26,7 +63,8 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="row"></div>
+                <div class="row" id="pager1_show"></div>
+                <div class="row" id="pager2_show"></div>
             </div>
             <div class="col-md-6">
                 <p>Based in Los Angeles, California, SimplyBridal is about making your wedding process easy and accessible. When our founder Lawrence Ng began researching the bridal space he was surprised by how expensive it was. Many of its aspects seemed overpriced. After watching an episode of Say Yes to the Dress, he realized how important the dress was to the bride and how the bride had to stretch beyond her budget to buy the dress she wanted. This was not right.</p>
