@@ -1,0 +1,181 @@
+/*
+    table view template
+
+    變數
+        keyword         - 幫助產生不同變數的值
+        templateView    - jsrender.js 在產生樣版所使用的物件
+        templateEvent   - 讓 developer 註冊的 events
+        templateModel   - 給予外界使用的接口
+
+    相依
+        jQuery
+*/
+(function(setting){
+
+    var templateView = {
+        init: function( obj )
+        {
+            this.items          = obj.items || [];
+            this.keyword        = setting.keyword;
+            this.templateId     = setting.templateId;
+            this.isShowCheckbox = false;
+            this.checkboxAll    = this.keyword + '_chooseItemsAll';
+            this.checkboxName   = this.keyword + '_chooseItems';
+        },
+        getRowTitles: function()
+        {
+            var firstRow = this.items[0];
+            var titles = [];
+            var count=0;
+            for (var key in firstRow) {
+                if (firstRow.hasOwnProperty(key)) {
+                   titles[count] = key;
+                   count++;
+                }
+            }
+            return titles;
+        },
+        getRowItems: function( index )
+        {
+            var row = this.items[index];
+            var array = $.map(row, function(value, index) {
+                return [value];
+            });
+            return array;
+        },
+        getRowCount: function()
+        {
+            var firstRow = this.items[0];
+            var count = 0;
+            for (var key in firstRow) {
+                if (firstRow.hasOwnProperty(key)) {
+                   count++;
+                }
+            }
+            return count;
+        },
+        getShowRowCount: function()
+        {
+            // 擴充 checkbox 的時候, 這裡也要判斷
+            var len = this.getRowCount();
+            if ( this.isShowCheckbox ) {
+                len++;
+            }
+            return len;
+        },
+        getUniqueId: function( prefix )
+        {
+            var microtime = function() {
+                var now = new Date().getTime() / 1000;
+                var s = parseInt(now, 10);
+                return Math.round((now - s) * 1000);
+            };
+            var s4 = function() {
+                return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+            }
+            var id = prefix || 'uid_';
+            return  id + s4() + s4() + s4() + microtime();
+        },
+        getCount: function()
+        {
+            return (this.items.length);
+        }
+    };
+
+    var templateEvent = {
+        events: {
+            checkOne: [],
+            error: []
+        },
+        add: function( eventName, callback )
+        {
+            if ( eventName == 'error' ) {
+                var len = this.events.error.length;
+                this.events.error[len] = callback;
+            }
+            else if ( eventName == 'checkOne' ) {
+                var len = this.events.checkOne.length;
+                this.events.checkOne[len] = callback;
+            }
+        },
+        // all events
+        checkOne: function(data) {
+            for ( index in this.events.checkOne ) {
+                this.events.checkOne[index](data);
+            }
+        },
+        error: function(data)
+        {
+            for ( index in this.events.error ) {
+                this.events.error[index](data);
+            }
+        }
+    };
+
+    var templateModel = {
+        view: {},
+        import: function(data)
+        {
+            this.view = templateView;
+            this.view.init(data);
+        },
+        on: function( eventName, callback )
+        {
+            templateEvent.add( eventName, callback );
+        },
+        render: function(renderName)
+        {
+            var renderName = renderName || '';
+            this.renderName = this.renderName || '';
+            if ( renderName ) {
+                this.renderName = renderName;
+            }
+
+            if ( this.view.getCount() <= 0 ) {
+                templateEvent.error({
+                    'key': 'no-any-data'
+                });
+                return;
+            }
+
+            var html = $('#'+setting.templateId).render( this.view );
+            $(this.renderName).html( html );
+
+            // checkbox all
+            var elementName = "input[name=" + templateView.checkboxAll + "]";
+            $(elementName).on("change", function(){
+                var elementName = "input[name='" + templateView.checkboxName + "[]']";
+                $(elementName).prop('checked', this.checked);
+                $(elementName).change();
+            });
+
+            // checkbox item line
+            var elementsName = "input[name='" + templateView.checkboxName + "[]']";
+            $(elementsName).on("change", function(){
+
+                var yes = 0;
+                var no = 0;
+                $(elementsName).each(function(){
+                    if ( $(this).prop('checked') ) {
+                        yes++;
+                    }
+                    else {
+                        no++;
+                    }
+                });
+
+                templateEvent.checkOne({
+                    'checked': this.checked,
+                    'yes': yes,
+                    'no':  no,
+                    'element': this
+                });
+
+            });
+
+        }
+    };
+
+    this[setting.keyword] = templateModel;
+
+})(theAutoSetting);
