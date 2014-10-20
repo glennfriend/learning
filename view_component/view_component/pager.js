@@ -62,26 +62,18 @@
         },
         add: function( eventName, callback )
         {
-            if ( eventName == 'pageClick' ) {
-                var len = this.events.pageClick.length;
-                this.events.pageClick[len] = callback;
+            if ( typeof this.events[eventName] == 'undefined' ) {
+                console.log('view_componnent error, event name not found.');
+                return;
             }
-            else if ( eventName == 'error' ) {
-                var len = this.events.error.length;
-                this.events.error[len] = callback;
-            }
+            var len = this.events[eventName].length;
+            this.events[eventName][len] = callback;
         },
-        // all events
-        pageClick: function( data )
+        // fire all events
+        fire: function(eventName, data)
         {
-            for ( index in this.events.pageClick ) {
-                this.events.pageClick[index]( data );
-            }
-        },
-        error: function()
-        {
-            for ( index in this.events.error ) {
-                this.events.error[index]();
+            for ( index in this.events[eventName] ) {
+                this.events[eventName][index](data);
             }
         }
     };
@@ -105,7 +97,7 @@
         render: function()
         {
             if ( this.view.count <= 0 ) {
-                templateEvent.error();
+                templateEvent.fire('error');
                 return;
             }
 
@@ -127,7 +119,7 @@
                 else {
                     myself.view.page = Number(page);
                 }
-                templateEvent.pageClick({
+                templateEvent.fire('pageClick', {
                     page:        myself.view.page,
                     originPage:  currentPage,
                     isFirstPage: myself.view.isFirstPage(),

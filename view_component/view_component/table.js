@@ -89,25 +89,18 @@
         },
         add: function( eventName, callback )
         {
-            if ( eventName == 'error' ) {
-                var len = this.events.error.length;
-                this.events.error[len] = callback;
+            if ( typeof this.events[eventName] == 'undefined' ) {
+                console.log('view_componnent error, event name not found.');
+                return;
             }
-            else if ( eventName == 'checkOne' ) {
-                var len = this.events.checkOne.length;
-                this.events.checkOne[len] = callback;
-            }
+            var len = this.events[eventName].length;
+            this.events[eventName][len] = callback;
         },
-        // all events
-        checkOne: function(data) {
-            for ( index in this.events.checkOne ) {
-                this.events.checkOne[index](data);
-            }
-        },
-        error: function(data)
+        // fire all events
+        fire: function(eventName, data)
         {
-            for ( index in this.events.error ) {
-                this.events.error[index](data);
+            for ( index in this.events[eventName] ) {
+                this.events[eventName][index](data);
             }
         }
     };
@@ -132,7 +125,7 @@
             }
 
             if ( this.view.getCount() <= 0 ) {
-                templateEvent.error({
+                templateEvent.fire('error', {
                     'key': 'no-any-data'
                 });
                 return;
@@ -164,7 +157,7 @@
                     }
                 });
 
-                templateEvent.checkOne({
+                templateEvent.fire('checkOne', {
                     'checked': this.checked,
                     'yes': yes,
                     'no':  no,

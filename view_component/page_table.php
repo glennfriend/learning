@@ -14,8 +14,8 @@
             table1.on('checkOne', function(data){
                 console.log(data);
                 var html = "information ::";
-                html += "\nyes = " + data.yes;
-                html += "\nno = " + data.no;
+                html += "\n" + "Yes = " + data.yes;
+                html += "\n" + "No = " + data.no;
                 $("#information").html(html);
             });
 
