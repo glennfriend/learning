@@ -13,6 +13,10 @@
 
         var initPager1 = function()
         {
+            pager1.on('error', function(data) {
+                console.log('page1 error');
+            });
+
             pager1.on('pageClick', function(data) {
                 console.log(data);
             });
