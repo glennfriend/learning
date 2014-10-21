@@ -3,9 +3,9 @@
     <script type="text/html" id="vcTemplate<?php echo ucfirst($keyword);?>">
         <table class="table table-striped table-condensed table-bordered">
             <tbody>
-                {{if name}}
+                {{if title}}
                     <tr style="text-align: center;">
-                        <td colspan="{{:getShowRowCount()}}">{{>name}}</td>
+                        <td colspan="{{:getShowRowCount()}}">{{>title}}</td>
                     </tr>
                 {{/if}}
                 <tr>

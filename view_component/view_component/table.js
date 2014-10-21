@@ -15,12 +15,14 @@
     var templateView = {
         init: function( obj )
         {
+            this.title           = obj.title || '';
             this.items          = obj.items || [];
             this.keyword        = setting.keyword;
             this.templateId     = setting.templateId;
             this.isShowCheckbox = false;
             this.checkboxAll    = this.keyword + '_chooseItemsAll';
             this.checkboxName   = this.keyword + '_chooseItems';
+            this.titleAlias     = [];
         },
         getRowTitles: function()
         {
@@ -29,8 +31,13 @@
             var count=0;
             for (var key in firstRow) {
                 if (firstRow.hasOwnProperty(key)) {
-                   titles[count] = key;
-                   count++;
+                    if ( typeof this.titleAlias[key] !== 'undefined' ) {
+                        titles[count] = this.titleAlias[key];
+                    }
+                    else {
+                        titles[count] = key;
+                    }
+                    count++;
                 }
             }
             return titles;
@@ -54,15 +61,20 @@
             }
             return count;
         },
+        /**
+         *  顯示 table row 的數量, 使用於 <td colspan="?">
+         */
         getShowRowCount: function()
         {
-            // 擴充 checkbox 的時候, 這裡也要判斷
             var len = this.getRowCount();
             if ( this.isShowCheckbox ) {
                 len++;
             }
             return len;
         },
+        /**
+         *  取得唯一值
+         */
         getUniqueId: function( prefix )
         {
             var microtime = function() {
@@ -73,12 +85,19 @@
             var s4 = function() {
                 return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
             }
-            var id = prefix || 'uid_';
-            return  id + s4() + s4() + s4() + microtime();
+            var prefix = prefix || 'uid_';
+            return prefix + s4() + s4() + s4() + microtime();
         },
         getCount: function()
         {
             return (this.items.length);
+        },
+        //
+        // setting
+        //
+        setTitleAilas: function( key, show )
+        {
+            this.titleAlias[key] = show.trim();
         }
     };
 
@@ -134,7 +153,7 @@
             var html = $('#'+setting.templateId).render( this.view );
             $(this.renderName).html( html );
 
-            // checkbox all
+            // checkbox all, no event
             var elementName = "input[name=" + templateView.checkboxAll + "]";
             $(elementName).on("change", function(){
                 var elementName = "input[name='" + templateView.checkboxName + "[]']";
@@ -142,7 +161,7 @@
                 $(elementName).change();
             });
 
-            // checkbox item line
+            // checkbox item line event
             var elementsName = "input[name='" + templateView.checkboxName + "[]']";
             $(elementsName).on("change", function(){
 
