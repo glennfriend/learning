@@ -15,7 +15,7 @@
     var templateView = {
         init: function( obj )
         {
-            this.title           = obj.title || '';
+            this.title          = obj.title || '';
             this.items          = obj.items || [];
             this.keyword        = setting.keyword;
             this.templateId     = setting.templateId;
@@ -92,9 +92,9 @@
         {
             return (this.items.length);
         },
-        //
-        // setting
-        //
+        /**
+         *  設定欄位標題的 別名
+         */
         setTitleAilas: function( key, show )
         {
             this.titleAlias[key] = show.trim();
