@@ -1,7 +1,7 @@
 <?php if (!isset($keyword)) {exit;} ?>
 
     <script type="text/html" id="vcTemplate<?php echo ucfirst($keyword);?>">
-        <table class="table table-striped table-condensed table-bordered">
+        <table id="<?php echo $keyword;?>" class="table table-striped table-condensed table-bordered">
             <tbody>
                 {{if title}}
                     <tr style="text-align: center;">

@@ -106,8 +106,8 @@
 
             // click page event
             var myself = this;
-            var className = "." + setting.keyword + "_pagerViewPage";
-            $(className).on("click", function(){
+            var element = "#" + setting.keyword + " .pagerViewPage";
+            $(element).on("click", function(){
                 var page = $(this).attr("data-page");
                 var currentPage = myself.view.page;
                 if ( page == 'next' ) {

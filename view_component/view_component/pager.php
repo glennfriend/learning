@@ -1,17 +1,17 @@
 <?php if (!isset($keyword)) {exit;} ?>
 
     <script type="text/html" id="vcTemplate<?php echo ucfirst($keyword);?>">
-        <ul class="pagination">
+        <ul id="<?php echo $keyword;?>" class="pagination">
             {{if isFirstPage()}}
                 <li class="disabled"><a>&laquo;</a></li>
             {{else}}
-                <li><a href="javascript:;" class="{{>keyword}}_pagerViewPage" data-page="prev">&laquo;</a></li>
+                <li><a href="javascript:;" class="pagerViewPage" data-page="prev">&laquo;</a></li>
             {{/if}}
-            {{range start=getPageStart() end=getPageEnd() ~key=keyword}}
+            {{range start=getPageStart() end=getPageEnd()}}
                 {{if #parent.parent.data.page == #data}}
                     <li class="active"><a href="javascript:;">{{:#data}}</a></li>
                 {{else}}
-                    <li><a href="javascript:;" class="{{>~key}}_pagerViewPage" data-page="{{:#data}}">
+                    <li><a href="javascript:;" class="pagerViewPage" data-page="{{:#data}}">
                         {{:#data}}
                     </a></li>
                 {{/if}}
@@ -19,7 +19,7 @@
             {{if isLastPage()}}
                 <li class="disabled"><a>&raquo;</a></li>
             {{else}}
-                <li><a href="javascript:;" class="{{>keyword}}_pagerViewPage" data-page="next">&raquo;</a></li>
+                <li><a href="javascript:;" class="pagerViewPage" data-page="next">&raquo;</a></li>
             {{/if}}
         </ul>
     </script>
