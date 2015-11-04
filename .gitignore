@@ -1,4 +1,4 @@
 _*
-composer.lock
+node_modules
 behat/vendor
 behat/tmp
