@@ -120,8 +120,9 @@
                         <a href="javascript:void(0);" class="list-group-item js-load" rel="basic">Basic</a>
                         <a href="javascript:void(0);" class="list-group-item js-load" rel="get-json">Get URL</a>
                         <a href="javascript:void(0);" class="list-group-item js-load" rel="syntactic-sugar">Syntactic Sugar</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="flow-sample">A Flow Sample</a>
                         <a href="javascript:void(0);" class="list-group-item js-load" rel="about-chain">About Chain</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" rel="flow-sample">A Flow Sample</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" rel="reject-or-throw">Reject or Throw</a>
                         <a href="javascript:void(0);" class="list-group-item js-load" rel="thenable">Thenable</a>
 
                         <a href="javascript:void(0);" class="list-group-item js-load" rel="promise-all">Promise.all</a>
@@ -139,35 +140,22 @@
                     <li>使用 Promise 規範
                         <ol>
                             <li>總是使用 Promise Chain</li>
+                            <li>使用 reject 而不是 throw</li>
                         </ol>
+                    </li>
+                    <li>參考
+                        <ul>
+                            <li><a target="_blank" href="http://liubin.github.io/promises-book/">JavaScript Promise迷你书（中文版）</a></li>
+                            <li><a target="_blank" href="https://www.npmjs.com/package/es6-promise">npm es6-promise</a></li>
+                            <li><a target="_blank" href="https://www.google.com.tw/#q=fetch+es6-promise">google fetch & es6-promise</a></li>
+                            <li><a target="_blank" href="http://www.html5rocks.com/en/tutorials/es6/promises/">Promises arrive in JavaScript</a></li>
+
+                        </ul>
                     </li>
                 </ul>
 
-                <h4>resolve 基本型</h4>
-                <pre class="js-return">
-var promise = new Promise(function(resolve, reject){
-    resolve(200);
-});
+                <p>&nbsp;</p>
 
-promise
-.then(function(value){
-    console.info(value);
-})
-.catch(function(error){
-    console.warn(error);
-});
-                </pre>
-
-                <h4>resolve 語法糖</h4>
-                <pre class="js-return">
-Promise.resolve(200)
-.then(function(value){
-    console.info(value);
-})
-.catch(function(error){
-    console.warn(error);
-});
-                </pre>
 
 
         </div>
