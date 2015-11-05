@@ -86,7 +86,7 @@
             $(".js-load").on('click', function(){
                 var that = this;
                 var template = $(this).attr('rel');
-                var file = 'http://htmlpreview.github.io/?https://github.com/glennfriend/learning/blob/master/es6-promise/public/' + template + ".htm";
+                var file = 'https://raw.githubusercontent.com/glennfriend/learning/master/es6-promise/public/' + template + ".htm";
                 $('#content').load(file, function(response, status, xhr){
                     if (status=2000) {
                         $(".js-load").removeClass("active");
