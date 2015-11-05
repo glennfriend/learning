@@ -82,6 +82,10 @@
 
         $(function() {
 
+            $.ajaxSetup ({
+                cache: false
+            });
+
             // load template
             $(".js-load").on('click', function(){
                 var that = this;
