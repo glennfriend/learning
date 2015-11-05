@@ -5,7 +5,8 @@
     <title>Example</title>
     <script src="assets/es6-promise/es6-promise.js"></script>
     <script src="assets/fetch-polyfill/fetch.js"></script>
-    <script src="assets/jquery/jquery.js"></script>
+    <///////////////////////script src="assets/jquery/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <style>
@@ -85,7 +86,7 @@
             $(".js-load").on('click', function(){
                 var that = this;
                 var template = $(this).attr('rel');
-                var file = template + ".htm";
+                var file = 'http://htmlpreview.github.io/?https://github.com/glennfriend/learning/blob/master/es6-promise/public/' + template + ".htm";
                 $('#content').load(file, function(response, status, xhr){
                     if (status=2000) {
                         $(".js-load").removeClass("active");
