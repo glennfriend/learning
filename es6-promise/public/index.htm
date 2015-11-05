@@ -5,7 +5,8 @@
     <title>Example</title>
     <script src="assets/es6-promise/es6-promise.js"></script>
     <script src="assets/fetch-polyfill/fetch.js"></script>
-    <script src="assets/jquery/jquery.js"></script>
+    <///////////////////////script src="assets/jquery/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <style>
@@ -18,8 +19,8 @@
     <script>
         "use strict";
 
-
         var message = '';
+
         function echo(msg)
         {
             var tmp = '';
@@ -83,9 +84,12 @@
 
             // load template
             $(".js-load").on('click', function(){
+                var that = this;
                 var template = $(this).attr('rel');
                 $('#content').load( template + ".htm", function(response, status, xhr){
                     if (status=2000) {
+                        $(".js-load").removeClass("active");
+                        $(that).addClass("active");
                         init();
                     }
                 });
@@ -145,13 +149,18 @@
                             <li>使用 reject 而不是 throw</li>
                         </ol>
                     </li>
-                    <li>參考
+                    <li>Promise
                         <ul>
+                            <li><a target="_blank" href="http://caniuse.com/promises/embed">Promise Support</a></li>
                             <li><a target="_blank" href="http://liubin.github.io/promises-book/">JavaScript Promise迷你书（中文版）</a></li>
                             <li><a target="_blank" href="https://www.npmjs.com/package/es6-promise">npm es6-promise</a></li>
+                        </ul>
+                    </li>
+                    <li>沿申閱讀
+                        <ul>
+                            <li><a target="_blank" href="http://caniuse.com/fetch/embed">Fetch Support</a></li>
                             <li><a target="_blank" href="https://www.google.com.tw/#q=fetch+es6-promise">google fetch & es6-promise</a></li>
                             <li><a target="_blank" href="http://www.html5rocks.com/en/tutorials/es6/promises/">Promises arrive in JavaScript</a></li>
-
                         </ul>
                     </li>
                 </ul>
