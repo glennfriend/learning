@@ -63,6 +63,8 @@
 
         }
 
+        // TODO: 暫時無法處理多 arguments 參數 的方法 console.log( 1,[2,3],{a:4} )
+
         console.log = function (message) {
             if (app.appendtoConsoleWrite) {
                 app.console.log(message);
