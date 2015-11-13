@@ -16,7 +16,10 @@
     <script>
         "use strict";
 
-        function init()
+        /**
+         *  每次載入頁面都要呼叫該程式
+         */
+        function everyLoadPage()
         {
             // clean all pre code "\n" and space
             $(".js-return code").each(function(){
@@ -59,6 +62,34 @@
             return result.join("\n");
         }
 
+        function load(tag)
+        {
+            if (tag.substr(0,1)=="#") {
+                tag = tag.substr(1);
+            }
+
+            var template = 'template/';
+            if (location.hostname == "htmlpreview.github.io") {
+                var template = 'https://raw.githubusercontent.com/glennfriend/learning/master/es6-promise/public/template/'
+            }
+
+            var file = template + tag + ".htm";
+            $('#content').load(file, function(response, status, xhr){
+                if (status=2000) {
+                    $(".js-load").each(function(){
+                        if ( $(this).attr('href') == "#"+tag ) {
+                            $(this).addClass("active");
+                        }
+                        else {
+                            $(this).removeClass("active");
+                        }
+                    });
+
+                    everyLoadPage();
+                }
+            });
+        }
+
         $(function() {
 
             consoleConvert.appendtoConsoleWrite = true;
@@ -68,21 +99,12 @@
                 cache: false
             });
 
-            // load template
-            $(".js-load").on('click', function(){
-                var that = this;
-                var template = $(this).attr('title');
-                var file = 'template/' + template + ".htm";
-                $('#content').load(file, function(response, status, xhr){
-                    if (status=2000) {
-                        $(".js-load").removeClass("active");
-                        $(that).addClass("active");
-                        init();
-                    }
-                });
+            $(window).on('hashchange', function() {
+                load(location.hash);
             });
+            load(location.hash);
 
-            init();
+            everyLoadPage();
 
         });
     </script>
@@ -109,19 +131,19 @@
                         <h3 class="panel-title"></h3>
                     </div>
                     <div class="list-group">
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="basic">Basic</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="get-json">Get URL</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="syntactic-sugar">Syntactic Sugar</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="about-chain">About Chain</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="flow-sample">A Flow Sample</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="reject-or-throw">Reject or Throw</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="thenable">Thenable</a>
+                        <a class="list-group-item js-load" href="#basic"            >Basic</a>
+                        <a class="list-group-item js-load" href="#get-json"         >Get URL</a>
+                        <a class="list-group-item js-load" href="#syntactic-sugar"  >Syntactic Sugar</a>
+                        <a class="list-group-item js-load" href="#about-chain"      >About Chain</a>
+                        <a class="list-group-item js-load" href="#flow-sample"      >A Flow Sample</a>
+                        <a class="list-group-item js-load" href="#reject-or-throw"  >Reject or Throw</a>
+                        <a class="list-group-item js-load" href="#thenable"         >Thenable</a>
 
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="promise-all">Promise.all</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="promise-race">Promise.race</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="fetch-sample">Fetch Sample</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="just-test">Just test only</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" title="custom">custom to test</a>
+                        <a class="list-group-item js-load" href="#promise-all"      >Promise.all</a>
+                        <a class="list-group-item js-load" href="#promise-race"     >Promise.race</a>
+                        <a class="list-group-item js-load" href="#fetch-sample"     >Fetch Sample</a>
+                        <a class="list-group-item js-load" href="#just-test"        >Just test only</a>
+                        <a class="list-group-item js-load" href="#custom"           >custom to test</a>
                     </div>
                 </div>
 
