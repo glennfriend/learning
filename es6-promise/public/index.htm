@@ -19,7 +19,7 @@
             $(".js-return").each(function(){
                 var text = $(this).text();
                 $(this).text(
-                    text.trim()
+                    collocateSourceCode(text)
                 );
             });
 
@@ -36,6 +36,20 @@
             });
         }
 
+        function collocateSourceCode(text)
+        {
+            var items = text.trim().split("\n");
+            var result = [];
+            for ( var i in items ) {
+                var item = items[i];
+                if ("    "===item.substr(0,4)) {
+                    item = item.substr(4);
+                }
+                result.push(item);
+            }
+            return result.join("\n");
+        }
+
         $(function() {
 
             consoleConvert.setId('board');
@@ -47,7 +61,7 @@
             // load template
             $(".js-load").on('click', function(){
                 var that = this;
-                var template = $(this).attr('rel');
+                var template = $(this).attr('title');
                 var file = 'template/' + template + ".htm";
                 $('#content').load(file, function(response, status, xhr){
                     if (status=2000) {
@@ -85,20 +99,20 @@
                         <h3 class="panel-title"></h3>
                     </div>
                     <div class="list-group">
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="basic">Basic</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="get-json">Get URL</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="syntactic-sugar">Syntactic Sugar</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="about-chain">About Chain</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="flow-sample">A Flow Sample</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="reject-or-throw">Reject or Throw</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="thenable">Thenable</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="basic">Basic</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="get-json">Get URL</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="syntactic-sugar">Syntactic Sugar</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="about-chain">About Chain</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="flow-sample">A Flow Sample</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="reject-or-throw">Reject or Throw</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="thenable">Thenable</a>
 
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="promise-all">Promise.all</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="promise-race">Promise.race</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="promise-all">Promise.all</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="promise-race">Promise.race</a>
 
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="fetch-sample">Fetch Sample</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="fetch-sample">Fetch Sample</a>
 
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="just-test">Just test only</a>                        
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="just-test">Just test only</a>
                     </div>
                 </div>
 

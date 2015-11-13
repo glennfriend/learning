@@ -1,20 +1,20 @@
 
-                <h4>resolve 基本型</h4>
-                <pre class="js-return">
-var promise = new Promise(function(resolve, reject){
-    resolve(200);
-});
+<h4>resolve 基本型</h4>
+<pre class="js-return">
+    var promise = new Promise(function(resolve, reject){
+        resolve(200);
+    });
 
-promise
-.then(function(value){
-    console.info(value);
-})
-                </pre>
+    promise
+    .then(function(value){
+        console.info(value);
+    })
+</pre>
 
-                <h4>resolve 語法糖衣</h4>
-                <pre class="js-return">
-Promise.resolve(200)
-.then(function(value){
-    console.info(value);
-})
-                </pre>
+<h4>resolve 語法糖衣</h4>
+<pre class="js-return">
+    Promise.resolve(200)
+    .then(function(value){
+        console.info(value);
+    })
+</pre>
