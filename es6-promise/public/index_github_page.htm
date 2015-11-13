@@ -6,46 +6,12 @@
     <script src="assets/es6-promise/es6-promise.js"></script>
     <script src="assets/fetch-polyfill/fetch.js"></script>
     <script src="assets/jquery/jquery.js"></script>
-    <////// src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script src="dist/console-convert.js"></script>
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <style>
-        pre.display {
-            background-color: #ffffff;
-            border: 0px;
-            display: none;
-        }
-    </style>
     <script>
         "use strict";
-
-        var message = '';
-
-        function echo(msg)
-        {
-            var tmp = '';
-            for ( var i = 0; i < arguments.length; i++) {
-                if ( '' === tmp ) {
-                    tmp = arguments[i];
-                }
-                else {
-                    tmp += ' ' + arguments[i];
-                }
-            }
-            if ( !message ) {
-                message = tmp;
-            }
-            else {
-                message += "\n" + tmp;
-            }
-        }
-
-        function output()
-        {
-            var output = message;
-            message = '';
-            return output;
-        }
 
         function init()
         {
@@ -60,27 +26,19 @@
             // render
             $(".js-return").each(function(){
                 var that = this;
-                $(this).append('<input style="float:right" type="button" class="is_clean" value="clean" />');
-                $(this).children('.is_clean').on('click', function(){
-                    $(that).next('pre').text('');
-                });
 
                 $(this).append('<input style="float:right" type="button" class="is_return" value="return" />');
                 $(this).children('.is_return').on('click', function(){
                     var code = $(this).parent().text();
                     var run = new Function(code);
                     run();
-                    $(that).next('pre').css('display', 'block');
-                    var text = $(that).next('pre').text();
-                    if (text) {
-                        text = text + "\n";
-                    }
-                    $(that).next('pre').text( text + output() );
                 });
             });
         }
 
         $(function() {
+
+            consoleConvert.setId('board');
 
             $.ajaxSetup ({
                 cache: false
@@ -90,7 +48,8 @@
             $(".js-load").on('click', function(){
                 var that = this;
                 var template = $(this).attr('rel');
-                var file = 'https://raw.githubusercontent.com/glennfriend/learning/master/es6-promise/public/' + template + ".htm";
+              //var file = 'template/' + template + ".htm";
+                var file = 'https://raw.githubusercontent.com/glennfriend/learning/master/es6-promise/public/template/' + template + ".htm";
                 $('#content').load(file, function(response, status, xhr){
                     if (status=2000) {
                         $(".js-load").removeClass("active");
@@ -145,7 +104,7 @@
                 </div>
 
             </div>
-            <div id="content" class="col-md-10">
+            <div id="content" class="col-md-5">
 
                 <ul>
                     <li>使用 Promise 規範
@@ -172,8 +131,11 @@
 
                 <p>&nbsp;</p>
 
-
             </div>
+            <p>
+                <input type="button" value="clear" onclick="$('#board').text('');" />
+            </p>
+            <pre id="board" class="col-md-5"></pre>
         </div>
     </section>
 

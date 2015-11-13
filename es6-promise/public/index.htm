@@ -6,6 +6,7 @@
     <script src="assets/es6-promise/es6-promise.js"></script>
     <script src="assets/fetch-polyfill/fetch.js"></script>
     <script src="assets/jquery/jquery.js"></script>
+
     <script src="dist/console-convert.js"></script>
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -47,7 +48,7 @@
             $(".js-load").on('click', function(){
                 var that = this;
                 var template = $(this).attr('rel');
-                var file = template + ".htm";
+                var file = 'template/' + template + ".htm";
                 $('#content').load(file, function(response, status, xhr){
                     if (status=2000) {
                         $(".js-load").removeClass("active");
