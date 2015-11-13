@@ -92,7 +92,7 @@
             if (app.appendtoConsoleWrite) {
                 app.console.error(message);
             }
-            var icon = '<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ';
+            var icon = '<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> ';
             write(message, icon);
         }
 
