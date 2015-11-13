@@ -1,6 +1,6 @@
 
 <h4>get success</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
     var promise = new Promise(function(resolve, reject){
         $.ajax({
             url: 'json/result-success.json',
@@ -18,10 +18,10 @@
     .catch(function(error){
         console.warn(error);
     });
-</pre>
+</code></pre>
 
 <h4>get fail</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
     var promise = new Promise(function(resolve, reject){
         $.ajax({
             url: 'json/result-fail.json',
@@ -39,10 +39,10 @@
     .catch(function(error){
         console.warn(error);
     });
-</pre>
+</code></pre>
 
 <h4>URL error</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
     var promise = new Promise(function(resolve, reject){
         $.ajax({
             url: 'json/result-parse-error.json',
@@ -60,4 +60,4 @@
     .catch(function(error){
         console.warn(error);
     });
-</pre>
+</code></pre>

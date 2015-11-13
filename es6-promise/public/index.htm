@@ -6,8 +6,11 @@
     <script src="assets/es6-promise/es6-promise.js"></script>
     <script src="assets/fetch-polyfill/fetch.js"></script>
     <script src="assets/jquery/jquery.js"></script>
-
     <script src="dist/console-convert.js"></script>
+
+    <link rel="stylesheet" href="dist/highlight.js/styles/ir_black.css">
+    <script src="dist/highlight.js/highlight.pack.js"></script>
+
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <script>
@@ -16,7 +19,7 @@
         function init()
         {
             // clean all pre code "\n" and space
-            $(".js-return").each(function(){
+            $(".js-return code").each(function(){
                 var text = $(this).text();
                 $(this).text(
                     collocateSourceCode(text)
@@ -24,16 +27,22 @@
             });
 
             // render
+            // 先保留 source code, 免得上色後被污染, 就無法使用了
             $(".js-return").each(function(){
-                var that = this;
-
-                $(this).append('<input style="float:right" type="button" class="is_return" value="return" />');
-                $(this).children('.is_return').on('click', function(){
-                    var code = $(this).parent().text();
-                    var run = new Function(code);
+                var sourceCode = $(this).children("code").text();
+                $(this).append('<p></p>');
+                $(this).append('<input style="float:right" type="button" class="js_button" value="return" />');
+                $(this).children('.js_button').on('click', function(){
+                    var run = new Function(sourceCode);
                     run();
                 });
             });
+
+            // 程式碼上色
+            $('.js-return code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
         }
 
         function collocateSourceCode(text)
@@ -52,6 +61,7 @@
 
         $(function() {
 
+            consoleConvert.appendtoConsoleWrite = true;
             consoleConvert.setId('board');
 
             $.ajaxSetup ({
@@ -109,9 +119,7 @@
 
                         <a href="javascript:void(0);" class="list-group-item js-load" title="promise-all">Promise.all</a>
                         <a href="javascript:void(0);" class="list-group-item js-load" title="promise-race">Promise.race</a>
-
                         <a href="javascript:void(0);" class="list-group-item js-load" title="fetch-sample">Fetch Sample</a>
-
                         <a href="javascript:void(0);" class="list-group-item js-load" title="just-test">Just test only</a>
                     </div>
                 </div>

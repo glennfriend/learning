@@ -5,7 +5,7 @@
 </p>
 
 <h4>Promise Chain 總是將資料傳遞下去</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
 
     var promise = new Promise(function (resolve) {
         resolve(100);
@@ -19,10 +19,11 @@
     .then(function (value) {
         console.log(value);
     });
-</pre>
+
+</code></pre>
 
 <h4>不使用 Chain 會使得參數無法被傳遞, 請 "不要" 使用該方式!</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
 
     var promise = new Promise(function (resolve) {
         resolve(100);
@@ -37,5 +38,5 @@
         console.log(value); // 100
     })
 
-</pre>
+</code></pre>
 

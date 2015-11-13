@@ -6,8 +6,11 @@
     <script src="assets/es6-promise/es6-promise.js"></script>
     <script src="assets/fetch-polyfill/fetch.js"></script>
     <script src="assets/jquery/jquery.js"></script>
-
     <script src="dist/console-convert.js"></script>
+
+    <link rel="stylesheet" href="dist/highlight.js/styles/ir_black.css">
+    <script src="dist/highlight.js/highlight.pack.js"></script>
+
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <script>
@@ -16,28 +19,49 @@
         function init()
         {
             // clean all pre code "\n" and space
-            $(".js-return").each(function(){
+            $(".js-return code").each(function(){
                 var text = $(this).text();
                 $(this).text(
-                    text.trim()
+                    collocateSourceCode(text)
                 );
             });
 
             // render
+            // 先保留 source code, 免得上色後被污染, 就無法使用了
             $(".js-return").each(function(){
-                var that = this;
-
-                $(this).append('<input style="float:right" type="button" class="is_return" value="return" />');
-                $(this).children('.is_return').on('click', function(){
-                    var code = $(this).parent().text();
-                    var run = new Function(code);
+                var sourceCode = $(this).children("code").text();
+                $(this).append('<p></p>');
+                $(this).append('<input style="float:right" type="button" class="js_button" value="return" />');
+                $(this).children('.js_button').on('click', function(){
+                    var run = new Function(sourceCode);
                     run();
                 });
             });
+
+            // 程式碼上色
+            $('.js-return code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+        }
+
+        function collocateSourceCode(text)
+        {
+            var items = text.trim().split("\n");
+            var result = [];
+            for ( var i in items ) {
+                var item = items[i];
+                if ("    "===item.substr(0,4)) {
+                    item = item.substr(4);
+                }
+                result.push(item);
+            }
+            return result.join("\n");
         }
 
         $(function() {
 
+            consoleConvert.appendtoConsoleWrite = true;
             consoleConvert.setId('board');
 
             $.ajaxSetup ({
@@ -47,7 +71,7 @@
             // load template
             $(".js-load").on('click', function(){
                 var that = this;
-                var template = $(this).attr('rel');
+                var template = $(this).attr('title');
               //var file = 'template/' + template + ".htm";
                 var file = 'https://raw.githubusercontent.com/glennfriend/learning/master/es6-promise/public/template/' + template + ".htm";
                 $('#content').load(file, function(response, status, xhr){
@@ -86,20 +110,18 @@
                         <h3 class="panel-title"></h3>
                     </div>
                     <div class="list-group">
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="basic">Basic</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="get-json">Get URL</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="syntactic-sugar">Syntactic Sugar</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="about-chain">About Chain</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="flow-sample">A Flow Sample</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="reject-or-throw">Reject or Throw</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="thenable">Thenable</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="basic">Basic</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="get-json">Get URL</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="syntactic-sugar">Syntactic Sugar</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="about-chain">About Chain</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="flow-sample">A Flow Sample</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="reject-or-throw">Reject or Throw</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="thenable">Thenable</a>
 
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="promise-all">Promise.all</a>
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="promise-race">Promise.race</a>
-
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="fetch-sample">Fetch Sample</a>
-
-                        <a href="javascript:void(0);" class="list-group-item js-load" rel="just-test">Just test only</a>                        
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="promise-all">Promise.all</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="promise-race">Promise.race</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="fetch-sample">Fetch Sample</a>
+                        <a href="javascript:void(0);" class="list-group-item js-load" title="just-test">Just test only</a>
                     </div>
                 </div>
 

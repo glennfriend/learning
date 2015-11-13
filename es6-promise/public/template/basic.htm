@@ -1,5 +1,5 @@
 <h4>建立一個 success process</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
     var promise = new Promise(function(resolve, reject){
         resolve(200);
     });
@@ -11,10 +11,10 @@
     .catch(function(error){
         console.warn(error);
     });
-</pre>
+</code></pre>
 
 <h4>建立一個 fail process</h4>
-<pre class="js-return">
+<pre class="js-return"><code class="javascript">
     var promise = new Promise(function(resolve, reject){
         reject(404);
     });
@@ -26,4 +26,4 @@
     .catch(function(error){
         console.warn(error);
     });
-</pre>
+</code></pre>
