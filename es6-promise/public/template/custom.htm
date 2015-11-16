@@ -11,7 +11,7 @@
 
     var runCode = function()
     {
-        var sourceCode = $(".is_textarea").text();
+        var sourceCode = $(".is_textarea").val();
         var run = new Function(sourceCode);
         run();
     };
