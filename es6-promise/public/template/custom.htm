@@ -8,14 +8,35 @@
     }
 </style>
 <script>
+
+    var runCode = function()
+    {
+        var sourceCode = $(".is_textarea").text();
+        var run = new Function(sourceCode);
+        run();
+    };
+
     $(function() {
-        $(".is_textarea").on('click', function(){
-            var sourceCode = $(this).text();
-            var run = new Function(sourceCode);
-            run();
+        //
+        $(".is_textarea").on('keydown', function(e){
+            if (e.keyCode === 13 && e.ctrlKey) {
+                runCode();
+                e.preventDefault();
+            }
         });
+
+        // 利用這種方式讓 游標 移至 最後面
+        $('textarea.is_textarea').focus();
+        var value = $('textarea.is_textarea').val();
+        $('textarea.is_textarea').val('');
+        $('textarea.is_textarea').val(value);
+
+        $('textarea.is_textarea').click();
     });
 </script>
+
 <p>
-    <textarea class="is_textarea">console.log(123)</textarea>
+<textarea class="is_textarea">console.log("Hello World");
+</textarea>
+<input type="button" value="Ctrl + Enter to run code" onClick="runCode()" />
 </p>
