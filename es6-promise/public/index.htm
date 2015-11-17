@@ -69,6 +69,10 @@
 
         function load(tag)
         {
+            if (!tag) {
+                return;
+            }
+
             if (tag.substr(0,1)=="#") {
                 tag = tag.substr(1);
             }
