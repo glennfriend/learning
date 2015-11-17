@@ -63,38 +63,49 @@
 
         }
 
-        // TODO: 暫時無法處理多 arguments 參數 的方法 console.log( 1,[2,3],{a:4} )
+        // NOTE: 暫時無法像 console 處理多 arguments 參數 的方法 console.log( 1,[2,3],{a:4} )
+        // 暫時使用組成陣列的方式輸出
+        var manyMessagesProcess = function(message, args) {
+            if (args.length>1) {
+                message = args;
+            }
+            return message;
+        };
 
         console.log = function (message) {
+            message = manyMessagesProcess(message, arguments);
             if (app.appendtoConsoleWrite) {
                 app.console.log(message);
             }
             write(message);
-        }
+        };
 
         console.info = function (message) {
+            message = manyMessagesProcess(message, arguments);
             if (app.appendtoConsoleWrite) {
                 app.console.info(message);
             }
             var icon = '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> ';
             write(message, icon);
-        }
+        };
 
         console.warn = function (message) {
+            message = manyMessagesProcess(message, arguments);
             if (app.appendtoConsoleWrite) {
                 app.console.warn(message);
             }
             var icon = '<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> ';
             write(message, icon);
-        }
+        };
 
         console.error = function (message) {
+            message = manyMessagesProcess(message, arguments);
             if (app.appendtoConsoleWrite) {
                 app.console.error(message);
             }
             var icon = '<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> ';
             write(message, icon);
-        }
+        };
 
     };
 
