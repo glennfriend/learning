@@ -1,0 +1,45 @@
+<h4>const 宣告常數</h4>
+<pre class="js-return"><code class="javascript">
+    const a = 10;
+</code></pre>
+
+<h4>let 宣告區域變數</h4>
+<pre class="js-return"><code class="javascript">
+    let i = 100;
+    for ( let i=0 ; i<3; i++ ) {
+        console.log(i);
+    }
+    console.log( '=> ' + i );
+</code></pre>
+
+<h4>Arrow Function</h4>
+<pre class="js-return"><code class="javascript">
+    var nums = [1,2,3];
+
+    nums.forEach( function(v) {
+        console.log(v);
+    });
+
+    nums.forEach( (v) => {
+        console.log(v);
+    });
+</code></pre>
+
+<h4>Destructuring</h4>
+<pre class="js-return"><code class="javascript">
+    var arr = [1,2,3];
+    var [a, , b] = arr;
+    var {x} = {x:100, y:200};
+    console.log('a = ' + a);
+    console.log('b = ' + b);
+    console.log('x = ' + x);
+</code></pre>
+
+<h4>Template Strings</h4>
+<pre class="js-return"><code class="javascript">
+    var name = 'ken'
+    var template = `
+hello ${name}
+`;
+    console.log(template.trim());
+</code></pre>
