@@ -17,6 +17,8 @@
     <script src="dist/main.js"></script>
     <script>
 
+        var isDebug = document.cookie.replace(/(?:(?:^|.*;\s*)is_execute_now\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
         $(function() {
 
             $.ajaxSetup ({
@@ -44,7 +46,7 @@
 
             // debug code
             // 如果你需要一進頁面, 不點擊 "return" 就執行程式碼, 可使用以下程式
-            if (false) {
+            if (isDebug) {
                 var buttonTrigger = function() {
                     $(".js-button").each(function(){
                         this.click();
@@ -64,7 +66,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class=""><a href="index.html">Home</a></li>
-                        <li class=""><a href="https://babeljs.io/repl/" target="_blank">Babel try</a></li>
+                        <li class=""><a href="cookie_helper.html"        target="_blank">Setting</a></li>
+                        <li class=""><a href="http://lodashjs.com/docs/" target="_blank">v3 中文</a></li>
+                        <li class=""><a href="https://lodash.com/docs/"  target="_blank">v4 Document</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,10 +84,14 @@
                         <h3 class="panel-title"></h3>
                     </div>
                     <div class="list-group">
-                        <a class="list-group-item js-load" href="#quick-view"   >Quick View</a>
-                        <a class="list-group-item js-load" href="#loop"         >Loop</a>
-                        <a class="list-group-item js-load" href="#array"        >Array</a>
-                        <a class="list-group-item js-load" href="#object"       >Object</a>
+                        <a class="list-group-item js-load" href="#quick-view"           >Quick View</a>
+                        <a class="list-group-item js-load" href="#loop"                 >Loop</a>
+                        <a class="list-group-item js-load" href="#array"                >Array</a>
+                        <a class="list-group-item js-load" href="#array-day"            >Array a day</a>
+                        <a class="list-group-item js-load" href="#search"               >Search</a>
+                        <a class="list-group-item js-load" href="#convert-and-filter"   >Convert & Filter</a>
+                        <a class="list-group-item js-load" href="#object"               >Object</a>
+                        <a class="list-group-item js-load" href="#random"               >Random</a>
                     </div>
                 </div>
 

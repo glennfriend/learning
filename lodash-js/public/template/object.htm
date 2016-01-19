@@ -1,8 +1,48 @@
-<h4>Object Extend</h4>
+<h4>Object Extend (覆蓋)</h4>
 <pre class="js-return"><code class="javascript">
-    var objA = {"name": "colin", "car": "suzuki"};
-    var objB = {"name": "james", "age": 17};
-    var data = _.assign(objA, objB);
-    console.log(data);
+    var objA = {"name": "aa", "age": 17};
+    var objB = {"name": "bb", "car": "suzuki"};
+    var objC = {"name": "cc", "car": undefined};
+    console.log(
+        _.assign(objA, objB, objC)
+    );
 </code></pre>
 
+<h4>Removing properties</h4>
+<pre class="js-return"><code class="javascript">
+    var obj = {
+        "name":  "john",
+        "age":   17,
+        "car":   "suzuki",
+        "marry": false
+    };
+    console.log(
+        _.omit(obj, ['car', 'age'])
+    );
+</code></pre>
+
+<h4>只取得部份屬性</h4>
+<pre class="js-return"><code class="javascript">
+    var obj = {
+        "name":  "john",
+        "age":   17,
+        "car":   "suzuki",
+        "marry": false
+    };
+    console.log(
+        _.pick(obj, ['car', 'age', 'marry'])
+    );
+</code></pre>
+
+<h4>Error Handling</h4>
+<pre class="js-return"><code class="javascript">
+    function parseJson(str){
+        return _.attempt(JSON.parse.bind(null, str));
+    }
+
+    var data = parseJson('a');
+    console.log(data);
+
+    var data = parseJson('{"name": "colin"}');
+    console.log(data);
+</code></pre>

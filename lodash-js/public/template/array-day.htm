@@ -1,0 +1,27 @@
+<h4>只取得我需要的資料</h4>
+<pre class="js-return"><code class="javascript">
+    var items = [null,'',' ',0,"0",undefined,"hello world","Hello World",-100," -abc- ",5,5,1,2];
+    
+    //留下真值
+    items = _.compact(items);
+    console.log(items);
+
+    //不重覆
+    items = _.uniq(items);
+    console.log(items);
+
+    //移除自定義不要的值
+    items = _.difference(items, [3,4,5]);
+    console.log(items);
+
+    //逆排序
+    items = items.sort();
+    console.log(items);
+
+    //正排序
+    items = items.sort(function(a,b){
+        return b-a;
+    });
+    console.log(items);
+</code></pre>
+

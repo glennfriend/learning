@@ -1,0 +1,33 @@
+<h4>indexOf (array)</h4>
+<pre class="js-return"><code class="javascript">
+    _.indexOf([5, 6, 7, 5, 6, 7], 7);
+    // => 2
+
+    _.indexOf([5, 6, 5, 6], 3);
+    // => -1 (not find)
+</code></pre>
+
+<h4>find (object)</h4>
+<pre class="js-return"><code class="javascript">
+    var users = [
+        { 'user': 'john',   'age': 36, 'active': true  },
+        { 'user': 'daddy',  'age': 40, 'active': false },
+        { 'user': 'baby',   'age': 1,  'active': true  }
+    ];
+
+    // 單一屬性匹配
+    row = _.find(users, { 'active': true });
+    console.log(row);
+
+    // 多屬性匹配
+    row = _.find(users, { 'age': 1, 'active': true });
+    console.log(row);
+
+    // 自訂義匹配
+    var row = _.find(users, function(chr) {
+        return chr.age < 40;
+    });
+    console.log(row);
+    console.log( _.result(row, 'user') );
+
+</code></pre>
