@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+    <title>Example</title>
+    <script src="assets/lodash/lodash.js"></script>
+    <script src="assets/jquery/jquery.js"></script>
+    <script src="assets/babel-core/browser.js"></script>
+
+    <link rel="stylesheet" href="dist/highlight.js/styles/ir_black.css">
+    <script src="dist/highlight.js/highlight.pack.js"></script>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="dist/main.css" />
+    <script src="dist/main.js"></script>
+    <script>
+
+        $(function() {
+
+            $.ajaxSetup ({
+                cache: false
+            });
+
+            var template = 'template/';
+            if (location.hostname == "htmlpreview.github.io") {
+                var template = 'https://raw.githubusercontent.com/glennfriend/learning/master/lodash-js/public/template/'
+            }
+
+            if (!location.hash) {
+                location.hash = 'default';
+            }
+            $(window).on('hashchange', function() {
+                load(location.hash, template);
+            });
+            load(location.hash, template);
+
+            everyLoadPage();
+
+        });
+    </script>
+  </head>
+  <body>
+
+    <section>
+        <div class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="index.html">Home</a></li>
+                        <li class=""><a href="https://babeljs.io/repl/" target="_blank">Babel try</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin:20px;">
+        <div class="row">
+            <div class="col-md-2">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"></h3>
+                    </div>
+                    <div class="list-group">
+                        <a class="list-group-item js-load" href="#quick-view"   >Quick View</a>
+                        <a class="list-group-item js-load" href="#loop"         >Loop</a>
+                        <a class="list-group-item js-load" href="#array"        >Array</a>
+                        <a class="list-group-item js-load" href="#object"       >Object</a>
+                    </div>
+                </div>
+
+            </div>
+            <div id="content" class="col-md-10">
+
+                <p>&nbsp;</p>
+
+            </div>
+        </div>
+    </section>
+
+  </body>
+</html>
