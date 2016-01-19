@@ -35,10 +35,25 @@
                 load(location.hash, template);
             });
             load(location.hash, template);
-
-            everyLoadPage();
-
         });
+
+        /**
+         *  everyPageLoad() hook function
+         */
+        function pageLoadHook() {
+
+            // debug code
+            // 如果你需要一進頁面, 不點擊 "return" 就執行程式碼, 可使用以下程式
+            if (false) {
+                var buttonTrigger = function() {
+                    $(".js-button").each(function(){
+                        this.click();
+                    });
+                };
+                setTimeout(buttonTrigger, 0);
+            }
+        }
+
     </script>
   </head>
   <body>

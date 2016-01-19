@@ -3,7 +3,7 @@
 /**
  *  每次載入頁面都要呼叫該程式
  */
-function everyLoadPage()
+function everyPageLoad()
 {
     // clean all pre code "\n" and space
     $(".js-return code").each(function(){
@@ -18,8 +18,8 @@ function everyLoadPage()
     $(".js-return").each(function(){
         var sourceCode = $(this).children("code").text();
         $(this).append('<p></p>');
-        $(this).append('<input style="float:right" type="button" class="js_button" value="return" />');
-        $(this).children('.js_button').on('click', function(){
+        $(this).append('<input style="float:right" type="button" class="js-button" value="return" />');
+        $(this).children('.js-button').on('click', function(){
             //var run = new Function(sourceCode);
             //run();
             babel.run(sourceCode)
@@ -31,6 +31,7 @@ function everyLoadPage()
         hljs.highlightBlock(block);
     });
 
+    pageLoadHook();
 }
 
 function collocateSourceCode(text)
@@ -69,7 +70,7 @@ function load(tag, template)
                 }
             });
 
-            everyLoadPage();
+            everyPageLoad();
         }
     });
 }
