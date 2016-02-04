@@ -1,6 +1,6 @@
 <h4>只取得我需要的資料</h4>
 <pre class="js-return"><code class="javascript">
-    var items = [null,'',' ',0,"0",undefined,"hello world","Hello World",-100," -abc- ",5,5,1,2];
+    var items = [null,'',' ',0,"0",undefined,"hello world","c","a","b",-100," -abc- ",5,5,1,2];
     
     //留下真值
     items = _.compact(items);
@@ -18,7 +18,7 @@
     items = items.sort();
     console.log(items);
 
-    //正排序
+    //正排序 (內容不正確)
     items = items.sort(function(a,b){
         return b-a;
     });
