@@ -11,3 +11,24 @@
     str = _.toLower(str);
     console.log(str);
 </code></pre>
+
+<h4>Array filter</h4>
+<pre class="js-return"><code class="javascript">
+    let result = _.filter([4, 5, 6], function(n) {
+        return n % 2 == 0;
+    });
+    console.log(result);
+</code></pre>
+
+<h4>Json filter</h4>
+<pre class="js-return"><code class="javascript">
+    let allUsers = [
+        { 'user': 'barney', 'age': 36},
+        { 'user': 'fred',   'age': 40},
+        { 'user': 'vivian', 'age': 40}
+    ];
+    let users = _.filter(allUsers, {'age': 40});
+    for (let i = 0 ; i < users.length ; i++) {
+        console.log(users[i]);
+    }
+</code></pre>

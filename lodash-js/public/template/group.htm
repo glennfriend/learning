@@ -1,0 +1,20 @@
+<h4>group array</h4>
+<pre class="js-return"><code class="javascript">
+    let items = _.groupBy([2,2,0,0,10], function(n) {
+        return n;
+    });
+    _.forEach(items, function(value, key) {
+        console.log(key, value);
+    });
+</code></pre>
+
+<h4>count array</h4>
+<pre class="js-return"><code class="javascript">
+    let items = _.countBy([2,2,0,0,10], function(n) {
+        return n;
+    });
+    _.forEach(items, function(value, key) {
+        console.log(key, value);
+    });
+</code></pre>
+
